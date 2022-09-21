@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+// provider import
+import AppProvider from "./context/AppContext";
+
+// component imports
+import Wrapper from "./components/Wrapper";
+import NumberScreen from "./components/NumberScreen";
+import ButtonBox from "./components/ButtonBox";
+import Button from "./components/Button";
+
+// stylesheet import
+import "./App.css";
+
+const btnValues = [
+  ["C", "+-", "%", "/"],
+  [7, 8, 9, "x"],
+  [4, 5, 6, "-"],
+  [1, 2, 3, "+"],
+  [0, ".", "="],
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppProvider>
+      <h1>SIMPLE CALCULATOR</h1>
+      <Wrapper>
+        <NumberScreen />
+        <ButtonBox>
+          {btnValues.flat().map((btn, index) => (
+            <Button value={btn} key={index} />
+          ))}
+        </ButtonBox>
+      </Wrapper>
+    </AppProvider>
   );
 }
 
